@@ -8,11 +8,11 @@
                 "Peter Parker?</strong></p>";
     var artists = new string[]
     {
-        "Script: Dan Slott",
-        "Pencils: Humberto Ramos",
-        "Inks: Victor Olazaba",
-        "Colors: Edgar Delgado",
-        "Letters: Chris Eliopoulos"
+"Script: Dan Slott",
+"Pencils: Humberto Ramos",
+"Inks: Victor Olazaba",
+"Colors: Edgar Delgado",
+"Letters: Chris Eliopoulos"
     };
 }
 
@@ -23,6 +23,7 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
 </head>
+
 <body>
     <div>
         <h1>@seriesTitle</h1>
@@ -31,9 +32,20 @@
         <h5>Description:</h5>
         <div>@Html.Raw(description)</div>
 
-        <h5>Artists:</h5>
-        <div>@Html.Raw(artists)</div>
-        <div></div>
+        @if (artists.Length > 0)
+        {
+            <h5>Artists:</h5>
+            <div>
+                <ul>
+                    @foreach (var artist in artists)
+                    {
+                        <li>
+                            <text>@artist</text>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
     </div>
 </body>
 </html>
