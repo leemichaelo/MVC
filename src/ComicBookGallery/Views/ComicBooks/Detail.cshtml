@@ -1,26 +1,36 @@
-﻿@{
+﻿@model ComicBookGallery.Models.ComicBook
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Comic Book Detail";
+    ViewBag.Title = Model.DisplayText;
 }
 
-<h1>@ViewBag.SeriesTitle</h1>
-<h2>#@ViewBag.IssueNumber</h2>
+<h2>@Model.DisplayText</h2>
 
-<h5>Description:</h5>
-<div>@Html.Raw(ViewBag.Description)</div>
-
-@if (ViewBag.Artists.Length > 0)
-{
-    <h5>Artists:</h5>
-    <div>
-        <ul>
-            @foreach (var artist in ViewBag.Artists)
-            {
-                <li>
-                    <text>@artist</text>
-                </li>
-            }
-        </ul>
+<div class="row">
+    <!--First Column-->
+    <div class="col-md-6">
+        <div class="well">
+            <h5><label>Series Title:</label> @Model.SeriesTitle</h5>
+            <h5><label>Issue #:</label> @Model.IssueNumber</h5>
+            <h5><label>Favorite:</label> @(Model.Favorite ? "Yes" : "No")</h5>
+            <h5>Artists:</h5>
+            <div>
+                <ul>
+                    @foreach (var artist in Model.Artists)
+                    {
+                        <li>
+                            @artist.Role: @artist.Name
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <h5>Description</h5>
+        <div>@Html.Raw(Model.DescriptionHtml)</div>
     </div>
-}
-
+    <!--Second Column-->
+    <div class="col-md-6">
+        <img src="/Images/@Model.CoverImageFileName"
+             alt="@Model.DisplayText" class="img-responsive" />
+    </div>
+</div>
