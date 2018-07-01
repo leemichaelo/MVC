@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Annual Salary Calculator";
+}
+
+<div class="container">
+    <!--Wrapper Div-->
+    <form>
+        <fieldset>
+            <legend>@ViewBag.Title</legend>
+
+            <div class="form-group">
+                <label for="hourlyWages">Hourly Wages</label>
+                <input class="form-control" id="hourlyWages" type="number" step="any" placeholder="00.00">
+            </div>
+
+            <div class="form-group">
+                <label for="hoursPerWeek">Hours per Week</label>
+                <input class="form-control" id="hoursPerWeek" type="number" placeholder="00">
+            </div>
+
+            <div class="form-group">
+                <label for="numberOfWeeks">Number of Weeks</label>
+                <select class="form-control" id="numberOfWeeks">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                    <option>32</option>
+                    <option>33</option>
+                    <option>34</option>
+                    <option>36</option>
+                    <option>37</option>
+                    <option>38</option>
+                    <option>39</option>
+                    <option>40</option>
+                    <option>41</option>
+                    <option>42</option>
+                    <option>43</option>
+                    <option>44</option>
+                    <option>46</option>
+                    <option>47</option>
+                    <option>48</option>
+                    <option>49</option>
+                    <option>50</option>
+                    <option>51</option>
+                    <option>52</option>
+                </select>
+            </div>
+
+            <p id="annualCalculation"></p>
+
+        </fieldset>
+    </form>
+    <button class="btn btn-primary" onclick="annualSalaryCalculation()">Calculate</button>
+</div>
