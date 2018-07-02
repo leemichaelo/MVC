@@ -10,17 +10,17 @@
 
             <div class="form-group">
                 <label for="hourlyWages">Hourly Wages</label>
-                <input class="form-control" id="hourlyWages" type="number" step="any" placeholder="00.00">
+                <input class="form-control" id="hourlyWages" type="number" step="any" placeholder="00.00" name="user_hourlyWages">
             </div>
 
             <div class="form-group">
                 <label for="hoursPerWeek">Hours per Week</label>
-                <input class="form-control" id="hoursPerWeek" type="number" placeholder="00">
+                <input class="form-control" id="hoursPerWeek" type="number" placeholder="00" name="user_hoursPerWeek">
             </div>
 
             <div class="form-group">
                 <label for="numberOfWeeks">Number of Weeks</label>
-                <select class="form-control" id="numberOfWeeks">
+                <select class="form-control" id="numberOfWeeks" name="user_numberOfWeeks">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -74,7 +74,7 @@
 
             <p id="annualCalculation"></p>
 
+            <button class="btn btn-primary" type="button" onclick="annualSalaryCalculation()">Calculate</button>
         </fieldset>
-    </form>
-    <button class="btn btn-primary" onclick="annualSalaryCalculation()">Calculate</button>
+    </form> 
 </div>
