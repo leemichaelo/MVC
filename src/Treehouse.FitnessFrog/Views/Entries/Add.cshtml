@@ -29,7 +29,11 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Intensity, new { @class = "control-label" })
-                @Html.TextBoxFor(m => m.Intensity, null, new { @class = "form-control" })
+                <div>
+                    @Html.RadioButtonFor(m => m.Intensity, "Low") Low
+                    @Html.RadioButtonFor(m => m.Intensity, "Medium") Medium
+                    @Html.RadioButtonFor(m => m.Intensity, "High") High
+                </div>
             </div>
 
             <div class="form-group">
