@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PayrollSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,25 @@ namespace PayrollSystem.Controllers
 
         public ActionResult AnnualSalaryCalculator()
         {
-            return View();
+            var annualSalary = new AnnualSalaryCalculator()
+            {
+                HourlyWages = 00.00,
+                HoursPerWeek = 0
+            };
+
+            return View(annualSalary);
+        }
+
+        [HttpPost]
+        public ActionResult AnnualSalaryCalculator(AnnualSalaryCalculator annualSalary)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.AnnualSalary = (annualSalary.HourlyWages * annualSalary.HoursPerWeek) * annualSalary.WeeksPerYear;
+                return View();
+            }
+
+            return View(annualSalary);
         }
 
     }
