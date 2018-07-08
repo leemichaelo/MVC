@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
 
 namespace PayrollSystem.Models
 {
     public class AnnualSalaryCalculator
-    {      
+    {
+        [Display(Name = "Hourly Wages")]
         public double HourlyWages { get; set; }
+        [Display(Name = "Weekly Hours")]
         public double HoursPerWeek { get; set; }
+        [Display(Name = "Weeks Per Year")]
         public double WeeksPerYear { get; set; }
+        [Display(Name = "Annual Salary")]
         public double AnnualSalary { get; set; }
 
         public AnnualSalaryCalculator()
