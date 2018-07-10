@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.WeeksPerYear, new { @class = "control-label" })
-                @Html.DropDownListFor(m => m.WeeksPerYear, Enumerable.Range(1, 52).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), null, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.WeeksPerYear, Enumerable.Range(0, 52).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "-", new { @class = "form-control" })
             </div>
 
             @Html.LabelFor(m => m.AnnualSalary, new { @class = "control-label" }): $@ViewBag.AnnualSalary

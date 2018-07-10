@@ -19,8 +19,9 @@ namespace PayrollSystem.Controllers
             //Initializes the salary with the default values
             var annualSalary = new AnnualSalaryCalculator()
             {
-                HourlyWages = 00.00,
+                HourlyWages = 0,
                 HoursPerWeek = 0
+                
             };
 
             //When the page loads it starts with the default values
@@ -32,7 +33,7 @@ namespace PayrollSystem.Controllers
         {
             //If there aren't any "HourlyWages" field validation errors
             //then make sure the HourlyWages is greater than 0
-            if(ModelState.IsValidField("HourlyWages") && annualSalary.HourlyWages <= 0)
+            if (ModelState.IsValidField("HourlyWages") && annualSalary.HourlyWages <= 0)
             {
                 ModelState.AddModelError("HourlyWages", "The Hourly Wages field must be greater than '0'");
             }
@@ -42,6 +43,11 @@ namespace PayrollSystem.Controllers
             if (ModelState.IsValidField("HoursPerWeek") && annualSalary.HoursPerWeek <= 0)
             {
                 ModelState.AddModelError("HoursPerWeek", "The Weekly Hours field must be greater than '0'");
+            }
+
+            if (ModelState.IsValidField("WeeksPerYear") && annualSalary.WeeksPerYear <= 0)
+            {
+                ModelState.AddModelError("WeeksPerYear", "The Weeks Per Year field must be greater than '0'");
             }
 
             //Validates the values against the object
