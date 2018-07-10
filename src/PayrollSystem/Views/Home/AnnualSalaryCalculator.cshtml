@@ -11,6 +11,8 @@
         <fieldset>
             <legend>@ViewBag.Title</legend>
 
+            @Html.ValidationSummary("The following errors were found:", new { @class = "alert alert-danger" })
+
             <div class="form-group">
                 @Html.LabelFor(m => m.HourlyWages, new { @class = "control-label" })
                 @Html.TextBoxFor(m => m.HourlyWages, null, new { @type = "number", @step = "any", @class = "form-control" })

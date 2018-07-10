@@ -30,6 +30,20 @@ namespace PayrollSystem.Controllers
         [HttpPost]
         public ActionResult AnnualSalaryCalculator(AnnualSalaryCalculator annualSalary)
         {
+            //If there aren't any "HourlyWages" field validation errors
+            //then make sure the HourlyWages is greater than 0
+            if(ModelState.IsValidField("HourlyWages") && annualSalary.HourlyWages <= 0)
+            {
+                ModelState.AddModelError("HourlyWages", "The Hourly Wages field must be greater than '0'");
+            }
+
+            //If there aren't any "HoursPerWeek" field validation errors
+            //then make sure the HourlyWages is greater than 0
+            if (ModelState.IsValidField("HoursPerWeek") && annualSalary.HoursPerWeek <= 0)
+            {
+                ModelState.AddModelError("HoursPerWeek", "The Weekly Hours field must be greater than '0'");
+            }
+
             //Validates the values against the object
             if (ModelState.IsValid)
             {

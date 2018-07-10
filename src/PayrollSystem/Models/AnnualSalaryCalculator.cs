@@ -10,6 +10,7 @@ namespace PayrollSystem.Models
     public class AnnualSalaryCalculator
     {
         [Display(Name = "Hourly Wages")]
+        [DataType(DataType.Currency, ErrorMessage = "The Hourly Wages Field Must Be Formated as '0.00'")]
         public double HourlyWages { get; set; }
         [Display(Name = "Weekly Hours")]
         public double HoursPerWeek { get; set; }
