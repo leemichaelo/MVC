@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var applicationName = "Payroll System";
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,20 +20,17 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            @Html.ActionLink("Payroll System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" aria-expanded="false" aria-controls="navbarColor01" aria-label="Toggle navigation" type="button" data-target="#navbarColor01" data-toggle="collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            <a class="navbar-brand" href="~/Home/Index"><img class="img-circle" src="~/Images/CompanyLogo.jpg" alt="" width="200" height="100"></a>
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                    </li>
                     <li class="nav-item">
                         @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
+                    <li>@Html.ActionLink("Personnel Form", "frmPersonnel", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
             </div>
         </nav>
@@ -39,16 +40,21 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - CIS407 Payroll System</p>
+            <p>&copy; @DateTime.Now.Year @applicationName, All Rights Reserved.</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/jquery.validate.bootstrap.js"></script>
-    @RenderSection("scripts", required: false)
-    
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script>
+        $('input.datepicker').datepicker({
+            format: 'm/d/yyyy'
+        });
+    </script>
+
 </body>
 </html>

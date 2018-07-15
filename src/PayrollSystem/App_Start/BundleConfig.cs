@@ -25,6 +25,7 @@ namespace PayrollSystem
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-datepicker3.min.css",
                       "~/Content/Site.css"));
         }
     }

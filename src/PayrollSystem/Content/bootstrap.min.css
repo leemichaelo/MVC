@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * Bootswatch v4.1.1
  * Homepage: https://bootswatch.com
  * Copyright 2012-2018 Thomas Park
@@ -6636,7 +6636,7 @@ button.bg-danger:focus {
 }
 
 .bg-light {
-    background-color: #e9ecef !important;
+    background-color: #fff !important;
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -10110,5 +10110,3 @@ a.text-dark:hover, a.text-dark:focus {
         border-color: #dee2e6;
     }
 }
-
-

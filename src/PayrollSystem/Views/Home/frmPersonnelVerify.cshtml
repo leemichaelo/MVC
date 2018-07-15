@@ -1,0 +1,17 @@
+﻿@model PayrollSystem.Models.Person
+
+@{
+    ViewBag.Title = "Verify Personnel Form";
+}
+
+<div class="container">
+    <!--Wrapper Div-->
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.Label("Information to Submit:", new { @class = "control-label" })
+            @Html.TextArea("VerifyInput", (String)ViewBag.Message, 6, 10, new { @class = "form-control" })
+            
+        </div>
+
+    </div>
+</div>

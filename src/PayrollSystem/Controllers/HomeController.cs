@@ -20,8 +20,7 @@ namespace PayrollSystem.Controllers
             var annualSalary = new AnnualSalaryCalculator()
             {
                 HourlyWages = 0,
-                HoursPerWeek = 0
-                
+                HoursPerWeek = 0              
             };
 
             //When the page loads it starts with the default values
@@ -62,5 +61,38 @@ namespace PayrollSystem.Controllers
             return View(annualSalary);
         }
 
+        public ActionResult frmPersonnel()
+        {
+            //Initializes the personnel form to have the date fields default to today
+            var person = new Person()
+            {
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today.AddDays(1)
+            };
+            //When the page loads it will start with the person object
+            return View(person);
+        }
+
+        [HttpPost]
+        public ActionResult frmPersonnel(Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("frmPersonnelVerify", person);
+            }
+
+            return View(person);
+        }
+
+        public ActionResult frmPersonnelVerify(Person person)
+        {
+            ViewBag.Message = person.FirstName + "\n"
+                               + person.LastName + "\n"
+                               + person.PayRate + "\n"
+                               + person.StartDate.ToShortDateString() + "\n"
+                               + person.EndDate.ToShortDateString();
+
+            return View();
+        }
     }
 }

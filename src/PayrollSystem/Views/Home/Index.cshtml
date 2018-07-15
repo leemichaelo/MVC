@@ -2,6 +2,32 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="container"><!--Wrapper Div-->
-    <h1>Hello World!</h1>
+<div class="container row">
+<!--Wrapper Div-->
+    <!--Annual Salary Calculator-->
+    <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
+        <h3 class="card-header">Annual Salary Calculator</h3>
+        
+        <div class="card-body card-img">
+            <img src="~/Images/c_quickcalcgreen.jpg" width="300" height="200" alt="Annual Salary Calculator Image">
+            <p class="card-text">Quickly Calculate an Employee's Annual Salary</p>
+        </div>
+        <div class="card-body">
+            @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "Home", new { area = "" }, new { @class = "nav-link" })
+        </div>
+    </div>
+
+    <!--Personnel Form-->
+    <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
+        <h3 class="card-header">Add A New Employee</h3>
+        
+        <div class="card-body card-img">
+            <img src="~/Images/newHire.jpg" width="200" height="200" alt="Personnel Form Image">
+            <p class="card-text">Create A New Personnel Entry</p>
+        </div>
+        <div class="card-body">
+            @Html.ActionLink("Personnel Form", "frmPersonnel", "Home", new { area = "" }, new { @class = "card-link" })
+        </div>
+    </div>
+
 </div>
