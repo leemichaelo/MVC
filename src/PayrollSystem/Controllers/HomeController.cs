@@ -53,7 +53,8 @@ namespace PayrollSystem.Controllers
             if (ModelState.IsValid)
             {
                 //When the user hits the calculate button in the view, this calculates the annual salary
-                ViewBag.AnnualSalary = (annualSalary.HourlyWages * annualSalary.HoursPerWeek) * annualSalary.WeeksPerYear;
+                double annualSalaryCalculation = (annualSalary.HourlyWages * annualSalary.HoursPerWeek) *annualSalary.WeeksPerYear;
+                ViewBag.AnnualSalary = String.Format("{0:C}", annualSalaryCalculation);
                 return View();
             }
 

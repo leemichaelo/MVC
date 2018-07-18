@@ -30,11 +30,11 @@
             <div class="form-group row">
                 <div class="col-4">
                     @Html.LabelFor(m => m.WeeksPerYear, new { @class = "control-label" })
-                    @Html.DropDownListFor(m => m.WeeksPerYear, Enumerable.Range(0, 52).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "-", new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.WeeksPerYear, Enumerable.Range(0, 53).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), "-", new { @class = "form-control" })
                 </div>
             </div>
 
-            @Html.LabelFor(m => m.AnnualSalary, new { @class = "control-label" }): $@ViewBag.AnnualSalary
+            @Html.LabelFor(m => m.AnnualSalary, new { @class = "control-label" }): @ViewBag.AnnualSalary
 
             <div>
                 <button type="submit" class="btn btn-primary">
