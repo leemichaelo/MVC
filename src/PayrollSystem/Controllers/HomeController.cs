@@ -1,4 +1,5 @@
-﻿using PayrollSystem.Models;
+﻿using PayrollSystem.Data;
+using PayrollSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace PayrollSystem.Controllers
             var annualSalary = new AnnualSalaryCalculator()
             {
                 HourlyWages = 0,
-                HoursPerWeek = 0              
+                HoursPerWeek = 0
             };
 
             //When the page loads it starts with the default values
@@ -53,8 +54,9 @@ namespace PayrollSystem.Controllers
             if (ModelState.IsValid)
             {
                 //When the user hits the calculate button in the view, this calculates the annual salary
-                double annualSalaryCalculation = (annualSalary.HourlyWages * annualSalary.HoursPerWeek) *annualSalary.WeeksPerYear;
+                double annualSalaryCalculation = (annualSalary.HourlyWages * annualSalary.HoursPerWeek) * annualSalary.WeeksPerYear;
                 ViewBag.AnnualSalary = String.Format("{0:C}", annualSalaryCalculation);
+
                 return View();
             }
 
@@ -77,8 +79,14 @@ namespace PayrollSystem.Controllers
         [HttpPost]
         public ActionResult frmPersonnel(Person person)
         {
+            if (ModelState.IsValidField("EndDate") && person.EndDate <= person.StartDate)
+            {
+                ModelState.AddModelError("EndDate", "The End Date Must Be Greater Than Or Equal To The Start Date");
+            }
+
             if (ModelState.IsValid)
             {
+                saveUserActivity("Personnel Form");
                 return RedirectToAction("frmPersonnelVerify", person);
             }
 
@@ -94,6 +102,38 @@ namespace PayrollSystem.Controllers
                                + person.EndDate.ToShortDateString();
 
             return View();
+        }
+
+        public ActionResult frmUserActivity()
+        {
+            List <UserActivity> userActivities= loadUserActivity();
+
+            return View(userActivities);
+        }
+
+        public void saveUserActivity(string frmAccessed)
+        {
+            using (var context = new Context())
+            {
+                context.UserActivites.Add(new Models.UserActivity()
+                {
+                    UserIP = Request.UserHostAddress,
+                    DateOfActivity = DateTime.Now,
+                    FormAccessed = frmAccessed
+                });
+
+                context.SaveChanges();
+            }
+        }
+
+        public List<UserActivity> loadUserActivity()
+        {
+            using (var context = new Context())
+            {
+                var userActivity = context.UserActivites.ToList();
+
+                return userActivity;
+            }
         }
     }
 }

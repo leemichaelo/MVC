@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foolproof;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,16 +10,21 @@ namespace PayrollSystem.Models
     //Model for the tblPersonnel
     public class Person
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
+        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Required]
         [Display(Name = "Pay Rate")]
-        public Nullable<double> PayRate { get; set; }
+        public double PayRate { get; set; }
+        [Required]
         [Display(Name = "Start Date")]
-        public Nullable<System.DateTime> StartDate { get; set; }
+        public DateTime StartDate { get; set; }
+        [Required]
         [Display(Name = "End Date")]
-        public Nullable<System.DateTime> EndDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }

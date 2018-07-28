@@ -10,7 +10,7 @@ namespace PayrollSystem.Models
         /// <summary>
         /// 
         /// </summary>
-        public int ActivityID { get; set; }
+        public int Id { get; set; }
         public string UserIP { get; set; }
         public DateTime DateOfActivity { get; set; }
         public string FormAccessed { get; set; }

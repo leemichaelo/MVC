@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "User Activity";
+}
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">User IP</th>
+                <th scope="col">Date of Activity</th>
+                <th scope="col">Form Accessed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserIP</td>
+                    <td>@item.DateOfActivity</td>
+                    <td>@item.FormAccessed</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

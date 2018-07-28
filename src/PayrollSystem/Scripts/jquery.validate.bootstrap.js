@@ -1,5 +1,4 @@
-﻿
-(function ($) {
+﻿(function ($) {
     var defaultOptions = {
         validClass: 'has-success',
         errorClass: 'has-error',

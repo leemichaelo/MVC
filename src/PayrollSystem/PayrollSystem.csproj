@@ -159,30 +159,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Data\PayrollSystemDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PayrollSystemDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\PayrollSystemDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PayrollSystemDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\PayrollSystemDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PayrollSystemDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\tblPersonnel.cs">
-      <DependentUpon>PayrollSystemDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\tblUserActivity.cs">
-      <DependentUpon>PayrollSystemDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\tblUserLogin.cs">
-      <DependentUpon>PayrollSystemDataModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Data\Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,16 +177,6 @@
     <Content Include="Content\bootstrap-datepicker3.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Data\PayrollSystemDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PayrollSystemDataModel.Context.cs</LastGenOutput>
-      <DependentUpon>PayrollSystemDataModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Data\PayrollSystemDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PayrollSystemDataModel.edmx</DependentUpon>
-      <LastGenOutput>PayrollSystemDataModel.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon-16x16.png" />
     <Content Include="favicon-32x32.png" />
     <Content Include="favicon.ico" />
@@ -220,15 +187,9 @@
     <Content Include="Images\newHire.jpg" />
     <Content Include="Images\CompanyLogo.jpg" />
     <Content Include="Images\c_quickcalcgreen.jpg" />
+    <Content Include="Images\social-network.jpg" />
     <Content Include="mstile-150x150.png" />
     <Content Include="safari-pinned-tab.svg" />
-    <EntityDeploy Include="Data\PayrollSystemDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PayrollSystemDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\PayrollSystemDataModel.edmx.diagram">
-      <DependentUpon>PayrollSystemDataModel.edmx</DependentUpon>
-    </Content>
     <None Include="Properties\PublishProfiles\PayrollSystem - Web Deploy.pubxml" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -260,6 +221,7 @@
     <Content Include="Views\Home\frmPersonnel.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\frmPersonnelVerify.cshtml" />
+    <Content Include="Views\Home\frmUserActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,6 +9,11 @@ namespace PayrollSystem.Data
 {
     public class Context : DbContext
     {
+        public Context()
+        {
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
+        }
+
         public DbSet<UserLogin> UserLogins { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<UserActivity> UserActivites { get; set; }
