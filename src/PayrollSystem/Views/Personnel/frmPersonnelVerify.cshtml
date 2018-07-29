@@ -10,8 +10,8 @@
         <div class="form-group">
             @Html.Label("Information to Submit:", new { @class = "control-label" })
             @Html.TextArea("VerifyInput", (String)ViewBag.Message, 6, 10, new { @class = "form-control" })
-            
-        </div>
 
+        </div>
     </div>
+    @Html.ActionLink("Search Personnel", "frmSearchPersonnel", "Personnel", new { area = "" }, new { @class = "btn btn-primary" })
 </div>

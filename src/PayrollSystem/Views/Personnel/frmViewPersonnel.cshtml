@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Personnel File";
+}
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Payrate</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.PayRate</td>
+                    <td>@item.StartDate.ToShortDateString()</td>
+                    <td>@item.EndDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Search Personnel", "frmSearchPersonnel", "Personnel", new { area = "" }, new { @class = "btn btn-primary" })
+</div>

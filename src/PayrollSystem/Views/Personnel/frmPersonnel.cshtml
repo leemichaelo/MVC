@@ -1,0 +1,63 @@
+﻿@model PayrollSystem.Models.Person
+
+@{
+    ViewBag.Title = "Personnel Form";
+}
+
+<div class="container">
+    <!--Wrapper Div-->
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>@ViewBag.Title</legend>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.FirstName, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.FirstName, null, new { @type = "text", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.LastName, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.LastName, null, new { @type = "text", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.PayRate, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.PayRate, null, new { @type = "number", @step = "any", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PayRate)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.StartDate, "{0:d}", new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(m => m.StartDate)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-4">
+                    @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.EndDate, "{0:d}", new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(m => m.EndDate)
+                </div>
+            </div>
+
+        </fieldset>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span> Submit
+        </button>
+        <button type="reset" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span> Clear Form
+        </button>
+        @Html.ActionLink("Search Personnel", "frmSearchPersonnel", "Personnel", new { area = "" }, new { @class = "btn btn-primary" })
+    }
+</div>

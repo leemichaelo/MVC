@@ -158,7 +158,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AnnualSalaryCalculatorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PersonnelController.cs" />
+    <Compile Include="Controllers\UserActivityController.cs" />
     <Compile Include="Data\Context.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -216,12 +219,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\AnnualSalaryCalculator.cshtml" />
+    <Content Include="Views\AnnualSalaryCalculator\AnnualSalaryCalculator.cshtml" />
     <Content Include="site.webmanifest" />
-    <Content Include="Views\Home\frmPersonnel.cshtml" />
+    <Content Include="Views\Personnel\frmPersonnel.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\frmPersonnelVerify.cshtml" />
-    <Content Include="Views\Home\frmUserActivity.cshtml" />
+    <Content Include="Views\Personnel\frmPersonnelVerify.cshtml" />
+    <Content Include="Views\UserActivity\frmUserActivity.cshtml" />
+    <Content Include="Views\Personnel\frmViewPersonnel.cshtml" />
+    <Content Include="Views\Personnel\frmSearchPersonnel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

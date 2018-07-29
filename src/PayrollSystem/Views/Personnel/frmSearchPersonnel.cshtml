@@ -1,0 +1,23 @@
+﻿@model PayrollSystem.Models.Person
+
+@{
+    ViewBag.Title = "Personnel Form";
+}
+
+<div class="container">
+    <!--Wrapper Div-->
+    @using (Html.BeginForm())
+    {
+        <h1>@ViewBag.Title</h1>
+
+        <div class="form-group row">
+            <div class="col-4">
+                @Html.Label("Last Name", new { @class = "control-label" })
+                @Html.TextBox("searchRequest", null, new { @type = "text", @name="searchRequest", @class = "form-control" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span> Search
+        </button>
+    }
+</div>
