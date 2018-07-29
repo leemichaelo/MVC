@@ -109,7 +109,6 @@ namespace PayrollSystem.Controllers
                 {
                     personnelFiles = context.People.Where(m => m.LastName == searchRequest.LastName).ToList();
                 }
-
                 return personnelFiles;
             }
         }
