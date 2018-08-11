@@ -16,6 +16,6 @@ namespace PayrollSystem.Data
 
         public DbSet<UserLogin> UserLogins { get; set; }
         public DbSet<Person> People { get; set; }
-        public DbSet<UserActivity> UserActivites { get; set; }
+        public DbSet<UserActivity> UserActivites { get; set; }     
     }
 }

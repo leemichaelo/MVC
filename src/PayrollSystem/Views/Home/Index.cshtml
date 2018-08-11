@@ -26,9 +26,23 @@
             <p class="card-text">Create A New Personnel Entry</p>
         </div>
         <div class="card-body">
-            @Html.ActionLink("Personnel Form", "frmPersonnel", "Personnel", new { area = "" }, new { @class = "card-link" })
+            @Html.ActionLink("Personnel Form", "frmAddPersonnel", "Personnel", new { area = "" }, new { @class = "card-link" })
         </div>
     </div>
+
+    <!--View Personnel Form-->
+    <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
+        <h3 class="card-header">View Personnel</h3>
+
+        <div class="card-body card-img">
+            <img src="~/Images/viewPersonnel.jpg" width="200" height="200" alt="View Personnel Form Image">
+            <p class="card-text">Create A New Personnel Entry</p>
+        </div>
+        <div class="card-body">
+            @Html.ActionLink("Personnel Form", "frmViewPersonnel", "Personnel", new { area = "" }, new { @class = "card-link" })
+        </div>
+    </div>
+
 
     <!--User Activity Form-->
     <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">

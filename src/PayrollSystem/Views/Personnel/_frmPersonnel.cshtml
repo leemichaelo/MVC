@@ -1,15 +1,10 @@
 ﻿@model PayrollSystem.Models.Person
 
-@{
-    ViewBag.Title = "Personnel Form";
-}
-
 <div class="container">
     <!--Wrapper Div-->
     @using (Html.BeginForm())
     {
         <fieldset>
-            <legend>@ViewBag.Title</legend>
 
             <div class="form-group row">
                 <div class="col-4">
@@ -58,6 +53,5 @@
         <button type="reset" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span> Clear Form
         </button>
-        @Html.ActionLink("Search Personnel", "frmSearchPersonnel", "Personnel", new { area = "" }, new { @class = "btn btn-primary" })
     }
 </div>

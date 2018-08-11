@@ -191,6 +191,7 @@
     <Content Include="Images\CompanyLogo.jpg" />
     <Content Include="Images\c_quickcalcgreen.jpg" />
     <Content Include="Images\social-network.jpg" />
+    <Content Include="Images\viewPersonnel.jpg" />
     <Content Include="mstile-150x150.png" />
     <Content Include="safari-pinned-tab.svg" />
     <None Include="Properties\PublishProfiles\PayrollSystem - Web Deploy.pubxml" />
@@ -221,12 +222,15 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AnnualSalaryCalculator\AnnualSalaryCalculator.cshtml" />
     <Content Include="site.webmanifest" />
-    <Content Include="Views\Personnel\frmPersonnel.cshtml" />
+    <Content Include="Views\Personnel\_frmPersonnel.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Personnel\frmPersonnelVerify.cshtml" />
+    <Content Include="Views\Personnel\frmVerifyPersonnel.cshtml" />
     <Content Include="Views\UserActivity\frmUserActivity.cshtml" />
     <Content Include="Views\Personnel\frmViewPersonnel.cshtml" />
-    <Content Include="Views\Personnel\frmSearchPersonnel.cshtml" />
+    <Content Include="Views\Personnel\_frmSearchPersonnel.cshtml" />
+    <Content Include="Views\Personnel\frmEditPersonnel.cshtml" />
+    <Content Include="Views\Personnel\frmAddPersonnel.cshtml" />
+    <Content Include="Views\Personnel\frmDeletePersonnel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
