@@ -24,23 +24,7 @@
             <button class="navbar-toggler" aria-expanded="false" aria-controls="navbarColor01" aria-label="Toggle navigation" type="button" data-target="#navbarColor01" data-toggle="collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="~/Home/Index"><img class="img-circle" src="~/Images/CompanyLogo.jpg" alt="" width="200" height="100"></a>
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "AnnualSalaryCalculator", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("Personnel Form", "frmAddPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("View Personnel", "frmViewPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li>
-                        @Html.ActionLink("User Activity", "frmUserActivity", "UserActivity", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                </ul>
-            </div>
+            @Html.Partial("_Menu")
         </nav>
     </header>
 

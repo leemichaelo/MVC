@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNet.Identity
+
+@helper GetButtonVisibility(string controller, string action = null)
+{
+    if ((string)ViewContext.RouteData.Values["controller"] == controller &&
+        (action == null || (string)ViewContext.RouteData.Values["action"] == action))
+    {
+        <text>hidden</text>
+    }
+    else
+    {
+        <text>visible</text>
+    }
+}
+
+<a class="navbar-brand" href="~/Home/Index"><img class="img-circle" src="~/Images/CompanyLogo.jpg" alt="" width="200" height="100"></a>
+<div class="collapse navbar-collapse" id="navbarColor01">
+    @if (Request.IsAuthenticated)
+    {
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "AnnualSalaryCalculator", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li>
+                @Html.ActionLink("Personnel Form", "frmAddPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li>
+                @Html.ActionLink("View Personnel", "frmViewPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
+            </li>
+            <li>
+                @Html.ActionLink("User Activity", "frmUserActivity", "UserActivity", new { area = "" }, new { @class = "nav-link" })
+            </li>
+        </ul>
+        <h5 class="navbar-text" style="margin: auto">Hello @User.Identity.GetUserName()!</h5>
+        using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { @class = "navbar-right" }))
+        {
+            <button type="submit" class="btn btn-default navbar-btn">
+                <span class="glyphicon glyphicon-log-out"></span> Sign Out
+            </button>
+        }
+    }
+    else
+    {
+        //User Registration is not needed at this point
+        @*<a href="@Url.Action("Register", "Account")"
+               style="visibility: @GetButtonVisibility("Account")"
+               class="btn btn-success navbar-btn">
+                <span class="glyphicon glyphicon-plus"></span> Register
+            </a>*@
+        <a href="@Url.Action("SignIn", "Account")"
+           style="visibility: @GetButtonVisibility("Account")"
+           class="btn btn-default navbar-btn">
+            <span class="glyphicon glyphicon-log-in"></span> Sign In
+        </a>
+    }
+</div>

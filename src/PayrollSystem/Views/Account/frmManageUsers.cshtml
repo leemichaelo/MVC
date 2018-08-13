@@ -1,0 +1,51 @@
+﻿@model List<PayrollSystem.ViewModels.AccountViewModel.GroupedUserViewModel>
+
+@{
+    ViewBag.Title = "View Users";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["Message"]
+    </div>
+}
+
+<h2></h2>
+
+@*@Html.Partial("_frmSearchPersonnel")*@
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">UserName</th>
+                <th scope="col">Password</th>
+                <th scope="col">Security Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.UserName</td>
+                    <td>
+                        <a href="@Url.Action("frmEditUser", new { username = user.UserName })" class="btn btn-warning btn-sm margin-right">
+                            <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>
+                        </a>
+
+                        <a href="@Url.Action("frmDeleteUser", new { username = user.UserName })" class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span><span class="hidden-xs"> Delete</span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

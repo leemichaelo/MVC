@@ -4,57 +4,63 @@
 
 <div class="container row">
     <!--Wrapper Div-->
-    <!--Annual Salary Calculator-->
-    <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
-        <h3 class="card-header">Annual Salary Calculator</h3>
+    @if (Request.IsAuthenticated)
+    {
+        <!--Annual Salary Calculator-->
+        <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
+            <h3 class="card-header">Annual Salary Calculator</h3>
 
-        <div class="card-body card-img">
-            <img src="~/Images/c_quickcalcgreen.jpg" width="300" height="200" alt="Annual Salary Calculator Image">
-            <p class="card-text">Quickly Calculate an Employee's Annual Salary</p>
+            <div class="card-body card-img">
+                <img src="~/Images/c_quickcalcgreen.jpg" width="300" height="200" alt="Annual Salary Calculator Image">
+                <p class="card-text">Quickly Calculate an Employee's Annual Salary</p>
+            </div>
+            <div class="card-body">
+                @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "AnnualSalaryCalculator", new { area = "" }, new { @class = "nav-link" })
+            </div>
         </div>
-        <div class="card-body">
-            @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "AnnualSalaryCalculator", new { area = "" }, new { @class = "nav-link" })
+
+        <!--Personnel Form-->
+        <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
+            <h3 class="card-header">Add A New Employee</h3>
+
+            <div class="card-body card-img">
+                <img src="~/Images/newHire.jpg" width="200" height="200" alt="Personnel Form Image">
+                <p class="card-text">Create A New Personnel Entry</p>
+            </div>
+            <div class="card-body">
+                @Html.ActionLink("Personnel Form", "frmAddPersonnel", "Personnel", new { area = "" }, new { @class = "card-link" })
+            </div>
         </div>
-    </div>
 
-    <!--Personnel Form-->
-    <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
-        <h3 class="card-header">Add A New Employee</h3>
+        <!--View Personnel Form-->
+        <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
+            <h3 class="card-header">View Personnel</h3>
 
-        <div class="card-body card-img">
-            <img src="~/Images/newHire.jpg" width="200" height="200" alt="Personnel Form Image">
-            <p class="card-text">Create A New Personnel Entry</p>
+            <div class="card-body card-img">
+                <img src="~/Images/viewPersonnel.jpg" width="200" height="200" alt="View Personnel Form Image">
+                <p class="card-text">Create A New Personnel Entry</p>
+            </div>
+            <div class="card-body">
+                @Html.ActionLink("Personnel Form", "frmViewPersonnel", "Personnel", new { area = "" }, new { @class = "card-link" })
+            </div>
         </div>
-        <div class="card-body">
-            @Html.ActionLink("Personnel Form", "frmAddPersonnel", "Personnel", new { area = "" }, new { @class = "card-link" })
+
+
+        <!--User Activity Form-->
+        <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
+            <h3 class="card-header">View User Activity</h3>
+
+            <div class="card-body card-img">
+                <img src="~/Images/social-network.jpg" width="200" height="200" alt="User Activity Image">
+                <p class="card-text">View User Activity</p>
+            </div>
+            <div class="card-body">
+                @Html.ActionLink("User Activity", "frmUserActivity", "UserActivty", new { area = "" }, new { @class = "card-link" })
+            </div>
         </div>
-    </div>
-
-    <!--View Personnel Form-->
-    <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
-        <h3 class="card-header">View Personnel</h3>
-
-        <div class="card-body card-img">
-            <img src="~/Images/viewPersonnel.jpg" width="200" height="200" alt="View Personnel Form Image">
-            <p class="card-text">Create A New Personnel Entry</p>
-        </div>
-        <div class="card-body">
-            @Html.ActionLink("Personnel Form", "frmViewPersonnel", "Personnel", new { area = "" }, new { @class = "card-link" })
-        </div>
-    </div>
-
-
-    <!--User Activity Form-->
-    <div class="card mb-3" style="max-width: 30rem; margin-right:auto;">
-        <h3 class="card-header">View User Activity</h3>
-
-        <div class="card-body card-img">
-            <img src="~/Images/social-network.jpg" width="200" height="200" alt="User Activity Image">
-            <p class="card-text">View User Activity</p>
-        </div>
-        <div class="card-body">
-            @Html.ActionLink("User Activity", "frmUserActivity", "UserActivty", new { area = "" }, new { @class = "card-link" })
-        </div>
-    </div>
-
+    }
+    else
+    {
+        <h3>Login In To View Information</h3>
+    }
 </div>
