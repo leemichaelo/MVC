@@ -1,4 +1,4 @@
-﻿@model List<PayrollSystem.ViewModels.AccountViewModel.GroupedUserViewModel>
+﻿@model List<PayrollSystem.Models.UserLogin>
 
 @{
     ViewBag.Title = "View Users";
@@ -16,15 +16,16 @@
     </div>
 }
 
-<h2></h2>
-
-@*@Html.Partial("_frmSearchPersonnel")*@
+    <a href="@Url.Action("frmAddUser")" class="btn btn-success btn-sm margin-right">
+        <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Add User</span>
+    </a>
 
 <div class="container">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">UserName</th>
+                <th scope="col">User Id</th>
+                <th scope="col">User Name</th>
                 <th scope="col">Password</th>
                 <th scope="col">Security Level</th>
             </tr>
@@ -35,6 +36,8 @@
                 <tr>
                     <td>@user.Id</td>
                     <td>@user.UserName</td>
+                    <td>@user.PasswordHash</td>
+                    <td>@user.UserRole</td>
                     <td>
                         <a href="@Url.Action("frmEditUser", new { username = user.UserName })" class="btn btn-warning btn-sm margin-right">
                             <span class="glyphicon glyphicon-edit"></span><span class="hidden-xs"> Edit</span>

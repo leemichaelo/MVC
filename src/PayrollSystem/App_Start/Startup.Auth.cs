@@ -15,7 +15,7 @@ namespace PayrollSystem
             app.UseCookieAuthentication(new Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new Microsoft.Owin.PathString("/Account/SignIn"),
+                LoginPath = new Microsoft.Owin.PathString("/Account/frmUserSignIn"),
                 Provider = new CookieAuthenticationProvider()
             });
         }

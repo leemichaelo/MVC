@@ -17,20 +17,23 @@
 <div class="collapse navbar-collapse" id="navbarColor01">
     @if (Request.IsAuthenticated)
     {
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "AnnualSalaryCalculator", new { area = "" }, new { @class = "nav-link" })
-            </li>
-            <li>
-                @Html.ActionLink("Personnel Form", "frmAddPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
-            </li>
-            <li>
-                @Html.ActionLink("View Personnel", "frmViewPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
-            </li>
-            <li>
-                @Html.ActionLink("User Activity", "frmUserActivity", "UserActivity", new { area = "" }, new { @class = "nav-link" })
-            </li>
-        </ul>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            @Html.ActionLink("Annual Salary Calculator", "AnnualSalaryCalculator", "AnnualSalaryCalculator", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li>
+            @Html.ActionLink("Personnel Form", "frmAddPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li>
+            @Html.ActionLink("View Personnel", "frmViewPersonnel", "Personnel", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li>
+            @Html.ActionLink("View Users", "frmManageUsers", "Account", new { area = "" }, new { @class = "nav-link" })
+        </li>
+        <li>
+            @Html.ActionLink("User Activity", "frmUserActivity", "UserActivity", new { area = "" }, new { @class = "nav-link" })
+        </li>
+    </ul>
         <h5 class="navbar-text" style="margin: auto">Hello @User.Identity.GetUserName()!</h5>
         using (Html.BeginForm("SignOut", "Account", FormMethod.Post, new { @class = "navbar-right" }))
         {

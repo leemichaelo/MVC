@@ -16,7 +16,6 @@ namespace PayrollSystem.Data
         public Context()
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
-            //
         }
     }
 }

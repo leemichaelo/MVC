@@ -7,6 +7,7 @@ using PayrollSystem.Secuirty;
 using PayrollSystem.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -15,14 +16,20 @@ using System.Web.Mvc;
 
 namespace PayrollSystem.Controllers
 {
+    [Authorize(Roles ="Administrator")]
+    //[Authorize(Roles = "Administrator")]
     public class AccountController : Controller
     {
+        Context context;
+
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
         private readonly IAuthenticationManager _authenticationManager;
 
         public AccountController(ApplicationUserManager applicationUserManager, ApplicationSignInManager applicationSignInManager, IAuthenticationManager authenticationManager)
         {
+            context = new Context();
+
             _userManager = applicationUserManager;
             _signInManager = applicationSignInManager;
             _authenticationManager = authenticationManager;
@@ -31,11 +38,10 @@ namespace PayrollSystem.Controllers
         [HttpGet]
         public ActionResult frmManageUsers()
         {
-            AccountViewModel.GroupedUserViewModel userFiles = new AccountViewModel.GroupedUserViewModel();
+            List<UserLogin> userFiles = new List<UserLogin>();
             userFiles = GetUsers();
 
             return View(userFiles);
-
         }
 
         [HttpPost]
@@ -66,6 +72,7 @@ namespace PayrollSystem.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult frmEditUser(string username)
         {
             // If the id, throw a bad request url result
@@ -74,26 +81,27 @@ namespace PayrollSystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            UserLogin person = GetUser(username);
+            UserLogin editUser = GetUser(username);
 
             // If the person is null, throw a not found result
-            if (person == null)
+            if (editUser == null)
             {
                 return HttpNotFound();
             }
 
-            return View(person);
+            return View(editUser);
         }
 
         [HttpPost]
-        public ActionResult frmEditUser(UserLogin userLogin)
+        public ActionResult frmEditUser(AccountViewModel user)
         {
             if (ModelState.IsValid)
             {
-                UpdateUser(userLogin);
+                AccountViewModel editUser = new AccountViewModel { Id = user.Id, UserName = user.UserName, UserRole = user.UserRole};
+                UpdateUser(user);
                 TempData["Message"] = "The user was succsefully updated!";
 
-                return RedirectToAction("frmViewUsers");
+                return RedirectToAction("frmManageUsers");
             }
 
             return View("frmEditUser");
@@ -129,25 +137,23 @@ namespace PayrollSystem.Controllers
             TempData["Message"] = "The peronnel was succsefully deleted!";
 
             //TODO Redirect to the entries list page
-            return RedirectToAction("frmViewUsers");
+            return RedirectToAction("frmManageUsers");
         }
 
-        [AllowAnonymous]
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult frmAddUser()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult> Register(AccountRegisterViewModel viewModel)
+        public async Task<ActionResult> frmAddUser(AccountRegisterViewModel viewModel)
         {
             // If the ModelState is valid...
             if (ModelState.IsValid)
             {
                 // Instantiate a User object
-                var user = new UserLogin { UserName = viewModel.Username };
+                var user = new UserLogin { UserName = viewModel.Username, UserRole = viewModel.UserRole };
 
                 // Create the user
                 var result = await _userManager.CreateAsync(user, viewModel.Password);
@@ -155,11 +161,14 @@ namespace PayrollSystem.Controllers
                 // If the user was successfully created...
                 if (result.Succeeded)
                 {
-                    // Sign-in the user
-                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //// Sign-in the user
+                    //await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    //Assign User to Role
+                    await _userManager.AddToRoleAsync(user.Id, viewModel.UserRole);
 
                     // Redirect them to the web app's "Home" page        
-                    return RedirectToAction("Index", "Entries");
+                    return RedirectToAction("Index", "Home");
                 }
 
                 // If there were errors...
@@ -175,14 +184,14 @@ namespace PayrollSystem.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult SignIn()
+        public ActionResult frmUserSignIn()
         {
             return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult> SignIn(AccountSignInViewModel viewModel)
+        public async Task<ActionResult> frmUserSignIn(AccountSignInViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -213,42 +222,20 @@ namespace PayrollSystem.Controllers
         public ActionResult SignOut()
         {
             _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("SignIn", "Account");
+            return RedirectToAction("frmUserSignIn", "Account");
         }
 
         //Returns a list of all users
-        public AccountViewModel.GroupedUserViewModel GetUsers()
+        public List<UserLogin> GetUsers()
         {
+            List<UserLogin> listToReturn = new List<UserLogin>();
             using (var context = new Context())
             {
-                //allUsers = context.Users
-                //    .OrderByDescending(u => u.UserName)
-                //    .ToList();
-
-                var role = (from r in context.Roles where r.Name.Contains("User") select r).FirstOrDefault();
-                var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role.Id)).ToList();
-
-                var userVM = users.Select(user => new AccountViewModel.UserViewModel
-                {
-                    Username = user.UserName,
-                    Role = "User"
-                }).ToList();
-
-
-                var role2 = (from r in context.Roles where r.Name.Contains("Administrator") select r).FirstOrDefault();
-                var admins = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role2.Id)).ToList();
-
-                var adminVM = admins.Select(user => new AccountViewModel.UserViewModel
-                {
-                    Username = user.UserName,
-                    Role = "Administrator"
-                }).ToList();
-
-
-                var model = new AccountViewModel.GroupedUserViewModel { Users = userVM, Admins = adminVM };
-
-                return model;
+                listToReturn = context.Users
+                    .OrderByDescending(u => u.UserName)
+                    .ToList();
             }
+            return listToReturn;
         }
 
         //Returns a user based on given id
@@ -265,16 +252,16 @@ namespace PayrollSystem.Controllers
         }
 
         //Updates a User in the Database
-        public void UpdateUser(UserLogin updatedInformation)
+        public void UpdateUser(AccountViewModel userName)
         {
             using (var context = new Context())
             {
-                var userToUpdate = context.Users
-                    .Where(u => u.UserName == updatedInformation.UserName)
+                UserLogin userToUpdate = context.Users
+                    .Where(u => u.Id == userName.Id)
                     .SingleOrDefault();
 
-                context.Entry(userToUpdate).CurrentValues
-                    .SetValues(updatedInformation);
+                _userManager.AddToRoleAsync(userToUpdate.Id, userName.UserRole);
+                userToUpdate.UserRole = userName.UserRole;
 
                 context.SaveChanges();
             }
@@ -288,7 +275,6 @@ namespace PayrollSystem.Controllers
                 UserLogin userToDelete = context.Users
                     .Where(u => u.UserName == username)
                     .SingleOrDefault();
-
 
                 context.Users.Remove(userToDelete);
                 context.SaveChanges();
