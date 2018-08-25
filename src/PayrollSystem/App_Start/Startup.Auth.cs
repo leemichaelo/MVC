@@ -12,7 +12,7 @@ namespace PayrollSystem
     {
         private void ConfigureAuth(IAppBuilder app)
         {
-            app.UseCookieAuthentication(new Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new Microsoft.Owin.PathString("/Account/frmUserSignIn"),

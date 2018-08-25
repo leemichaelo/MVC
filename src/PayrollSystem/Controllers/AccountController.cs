@@ -10,14 +10,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace PayrollSystem.Controllers
 {
-    [Authorize(Roles ="Administrator")]
-    //[Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class AccountController : Controller
     {
         Context context;
@@ -97,7 +97,7 @@ namespace PayrollSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                AccountViewModel editUser = new AccountViewModel { Id = user.Id, UserName = user.UserName, UserRole = user.UserRole};
+                AccountViewModel editUser = new AccountViewModel { Id = user.Id, UserName = user.UserName, UserRole = user.UserRole };
                 UpdateUser(user);
                 TempData["Message"] = "The user was succsefully updated!";
 
@@ -208,14 +208,46 @@ namespace PayrollSystem.Controllers
                     return RedirectToAction("Index", "Home");
                 case SignInStatus.Failure:
                     ModelState.AddModelError("", "Invalid login attempt.");
+
+                    try
+                    {
+                        MailMessage mail = new MailMessage();
+                        //Change who you want to send the email to
+                        mail.To.Add("Email sent to");
+                        //Change who you want to send the email from
+                        mail.From = new MailAddress("Email sent from");
+                        mail.Subject = "Requesting Information";
+
+                        string userMessage = "";
+                        userMessage = "<br/>Name: " + viewModel.Username;
+                        string Body = "Hi, <br/><br/> Unknown User Login:<br/><br/> " + userMessage + "<br/><br/>Thanks";
+
+                        mail.Body = Body;
+                        mail.IsBodyHtml = true;
+
+                        SmtpClient smtp = new SmtpClient();
+                        //SMTP Server Address of gmail
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        //Add in email credentials 
+                        smtp.Credentials = new NetworkCredential("email username", "email password");
+                        // Smtp Email ID and Password For authentication
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                        ViewBag.Message = "Thank you for your time.";
+                    }
+                    catch
+                    {
+                        ViewBag.Message = "Error............";
+                    }
+
                     return View(viewModel);
                 case SignInStatus.LockedOut:
                 case SignInStatus.RequiresVerification:
                     throw new NotImplementedException("identity feature not implemented.");
                 default:
-                    throw new Exception("Unexpected Microsoft.AspNet.Identity.Owin.SIgnInStatus enum value: " + result);
+                    throw new Exception("Unexpected Microsoft.AspNet.Identity.Owin.SignInStatus enum value: " + result);
             }
-
         }
 
         [HttpPost]
