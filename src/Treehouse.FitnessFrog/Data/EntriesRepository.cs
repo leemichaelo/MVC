@@ -72,7 +72,6 @@ namespace Treehouse.FitnessFrog.Data
 
             Data.Entries.Add(entry);
         }
-
         /// <summary>
         /// Updates an entry.
         /// </summary>

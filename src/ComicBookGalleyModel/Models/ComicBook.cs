@@ -19,7 +19,7 @@ namespace ComicBookGalleyModel.Models
         //Each comic book can only belong to one series
         public Series Series { get; set; }
         //Each comic book can have one or any artists and needs to be part of the constructor
-        public ICollection<ComicBookArtist> Artists { get; set; }
+        public virtual ICollection<ComicBookArtist> Artists { get; set; }
 
         public ComicBook()
         {
